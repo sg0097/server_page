@@ -54,20 +54,23 @@ const ServerInfoPage = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      <div className="absolute inset-0 w-full h-full bg-cover bg-center" style={{ backgroundImage: 'url(/images/background.png)' }} />
+      {/* Background */}
+      <div
+        className="absolute inset-0 w-full h-full bg-cover bg-center"
+        style={{ backgroundImage: 'url(/images/background.png)' }}
+      />
       <div className="absolute inset-0 bg-black bg-opacity-60" />
 
-      
-        <Sidebar />
-      
+      <Sidebar />
 
-      <div className="relative z-10 lg:ml-16">
+      <div className="relative z-10 ml-16">
         <Header />
         <main className="px-4 sm:px-8 pb-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white mb-6 tracking-wide">
             #1| NASA | Noobs Welcome | Conquest 40Hz
           </h2>
 
+          {/* Server Info */}
           <div className="mb-8">
             <div className="flex items-center mb-4">
               <img src="/images/img_germanyflag.svg" alt="Germany Flag" className="w-4 h-2 mr-3" />
@@ -177,31 +180,34 @@ const ServerInfoPage = () => {
               ))}
             </div>
           </div>
-
-          {/* Player Avatars (optional on mobile) */}
-          <div className="fixed right-2 top-5 space-y-2">
-            <div className="relative">
-              <img src="/images/img_friend_profile_pic.png" alt="Player 1" className="w-12 h-12 rounded" />
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-white rounded-full border-2 border-white" />
-            </div>
-            <div className="relative">
-              <img src="/images/img_friend_profile_pic_green_a700.png" alt="Player 2" className="w-12 h-12 rounded" />
-              <img src="/images/img_online.svg" alt="Online" className="absolute -top-1 -right-1 w-3 h-3" />
-            </div>
-            <div className="relative">
-              <img src="/images/img_vector_white_a700.svg" alt="Player 3" className="w-3 h-3" />
-            </div>
-            <div className="relative">
-              <img src="/images/img_homejoindefault.svg" alt="Join Default" className="w-12 h-11" />
-            </div>
-          </div>
         </main>
+      </div>
+
+      {/* Fixed Player Avatars */}
+      <div className="fixed right-2 top-5 z-30 space-y-4">
+        {/* Player 1 */}
+        <div className="relative w-12 h-12 flex items-center justify-center bg-gray-800 rounded">
+          <img src="/images/img_homejoindefault.svg" alt="Player 1" className="w-12 h-12" />
+          <img src="/images/img_vector_white_a700.svg" alt="Online" className="absolute -top-1 -right-1 w-3 h-3" />
+        </div>
+         {/* Player 2 */}
+        <div className="relative w-12 h-12">
+          <img src="/images/img_friend_profile_pic_green_a700.png" alt="Player 2" className="w-12 h-12 rounded" />
+          <img src="/images/img_online.svg" alt="Online" className="absolute -top-1 -right-1 w-3 h-3" />
+        </div>
+
+        {/* Player 3 */}
+        <div className="relative w-12 h-12">
+          <img src="/images/img_friend_profile_pic.png" alt="Player 3" className="w-12 h-12 rounded" />
+          <div className="absolute -top-1 -right-1 w-3 h-3 bg-white rounded-full border-2 border-white" />
+        </div>
+
+       
+
+       
       </div>
     </div>
   );
 };
 
 export default ServerInfoPage;
-
-
-

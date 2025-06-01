@@ -25,9 +25,9 @@ const Sidebar = () => {
         ))}
       </div>
 
-      <div className="flex flex-col items-center space-y-4 mt-auto">
-        <img src="/images/img_sidemenumisc.svg" alt="Misc" className="w-8 h-8" />
-        <img src="/images/img_sidemenumisc_white_a700.svg" alt="Misc White" className="w-8 h-8" />
+      <div className="flex items-center justify-center flex-col  space-y-4 mt-auto">
+        <img src="/images/img_sidemenumisc.svg" alt="Misc" className="w-12 h-12" />
+        <img src="/images/img_sidemenumisc_white_a700.svg" alt="Misc White" className="w-12 h-12" />
       </div>
     </aside>
   );
