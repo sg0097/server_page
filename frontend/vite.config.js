@@ -24,7 +24,7 @@ export default defineConfig({
     port: "4028",
     host: "0.0.0.0",
     strictPort: true,
-    allowedHosts: ['.amazonaws.com', '.builtwithrocket.new', 'server-page-5.onrender.com']
+    allowedHosts: ['.amazonaws.com', '.builtwithrocket.new', 'server-page-9.onrender.com']
   }
 
 });
