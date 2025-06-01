@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Gaming Theme Colors */
+    --primary-background: #1a1a1a;
+    --primary-foreground: #ffffff;
+    --primary-light: #2a2a2a;
+    --primary-dark: #0a0a0a;
+
+    /* Secondary Colors */
+    --secondary-background: #000000;
+    --secondary-foreground: #cccccc;
+    --secondary-light: #333333;
+    --secondary-dark: #111111;
+
+    /* Accent Colors */
+    --accent-color: #00657b;
+    --accent-foreground: #ffffff;
+    --accent-light: #4a9fb8;
+    --accent-dark: #004a5a;
+
+    /* Gaming UI Colors */
+    --gaming-yellow: #f3f300;
+    --gaming-blue: #009dff;
+    --gaming-orange: #ec7029;
+    --gaming-teal: #00657b;
+
+    /* Border Colors */
+    --border-primary: #ffffff33;
+    --border-secondary: #ffffff19;
+    --border-light: #ffffff0d;
+    --border-dark: #ffffff66;
+  }
+}
+
+@layer utilities {
+  /* Background Color Utilities */
+  .bg-gaming-dark {
+    background-color: var(--primary-background);
+  }
+
+  .bg-gaming-black {
+    background-color: var(--secondary-background);
+  }
+
+  .bg-gaming-accent {
+    background-color: var(--accent-color);
+  }
+
+  .bg-gaming-yellow {
+    background-color: var(--gaming-yellow);
+  }
+
+  .bg-gaming-blue {
+    background-color: var(--gaming-blue);
+  }
+
+  .bg-gaming-orange {
+    background-color: var(--gaming-orange);
+  }
+
+  .bg-gaming-teal {
+    background-color: var(--gaming-teal);
+  }
+
+  /* Text Color Utilities */
+  .text-gaming-white {
+    color: var(--primary-foreground);
+  }
+
+  .text-gaming-gray {
+    color: var(--secondary-foreground);
+  }
+
+  .text-gaming-yellow {
+    color: var(--gaming-yellow);
+  }
+
+  .text-gaming-blue {
+    color: var(--gaming-blue);
+  }
+
+  .text-gaming-orange {
+    color: var(--gaming-orange);
+  }
+
+  .text-gaming-teal {
+    color: var(--gaming-teal);
+  }
+
+  /* Border Color Utilities */
+  .border-gaming-primary {
+    border-color: var(--border-primary);
+  }
+
+  .border-gaming-secondary {
+    border-color: var(--border-secondary);
+  }
+
+  .border-gaming-light {
+    border-color: var(--border-light);
+  }
+
+  .border-gaming-dark {
+    border-color: var(--border-dark);
+  }
+
+  /* Gaming-specific utilities */
+  .gaming-overlay {
+    background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(16,16,16,0.3) 100%);
+  }
+
+  .gaming-gradient {
+    background: linear-gradient(138deg, #ec7029ff 0%, #d78d62ff 50%, #009dffff 100%);
+  }
+
+  .gaming-text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+}
