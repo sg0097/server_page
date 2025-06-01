@@ -12,22 +12,23 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="fixed left-0 top-0 h-full w-16 bg-black bg-opacity-20 flex flex-col items-center py-8 z-20">
-      <div className="space-y-8">
+    <aside className="flex fixed left-0 top-0 h-full w-16 bg-black bg-opacity-20 flex-col items-center py-8 z-20">
+      <div className="flex-1 flex flex-col items-center space-y-8">
         {sidebarItems.map((item, index) => (
           <button
             key={index}
             className="w-12 h-8 flex items-center justify-center hover:bg-white hover:bg-opacity-10 rounded transition-colors"
+            aria-label={item.alt}
           >
             <img src={item.icon} alt={item.alt} className="max-w-full max-h-full" />
           </button>
         ))}
       </div>
-      
-      <div className="mt-auto flex flex-col items-center ">
-  <img src="/images/img_sidemenumisc.svg" alt="Misc" className="w-8 h-8 space-x-20" />
-  <img src="/images/img_sidemenumisc_white_a700.svg" alt="Misc" className="w-8 h-8" />
-</div>
+
+      <div className="flex flex-col items-center space-y-4 mt-auto">
+        <img src="/images/img_sidemenumisc.svg" alt="Misc" className="w-8 h-8" />
+        <img src="/images/img_sidemenumisc_white_a700.svg" alt="Misc White" className="w-8 h-8" />
+      </div>
     </aside>
   );
 };

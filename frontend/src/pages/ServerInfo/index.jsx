@@ -25,17 +25,9 @@ const ServerInfoPage = () => {
     fetchData();
   }, []);
 
-  const handleJoinClick = () => {
-    alert('Joining server...');
-  };
-
-  const handleSpectateClick = () => {
-    alert('Spectating server...');
-  };
-
-  const handleCommanderClick = () => {
-    alert('Joining as commander...');
-  };
+  const handleJoinClick = () => alert('Joining server...');
+  const handleSpectateClick = () => alert('Spectating server...');
+  const handleCommanderClick = () => alert('Joining as commander...');
 
   const mapRotationData = [
     {
@@ -62,67 +54,70 @@ const ServerInfoPage = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center"
-        style={{ backgroundImage: 'url(/images/background.png)' }}
-      />
+      <div className="absolute inset-0 w-full h-full bg-cover bg-center" style={{ backgroundImage: 'url(/images/background.png)' }} />
       <div className="absolute inset-0 bg-black bg-opacity-60" />
-      <Sidebar />
 
-      <div className="relative z-10 ml-16">
+      
+        <Sidebar />
+      
+
+      <div className="relative z-10 lg:ml-16">
         <Header />
-        <main className="px-8 pb-8">
-          <h2 className="text-4xl font-semibold text-white mb-6 tracking-wide">
+        <main className="px-4 sm:px-8 pb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white mb-6 tracking-wide">
             #1| NASA | Noobs Welcome | Conquest 40Hz
           </h2>
 
           <div className="mb-8">
             <div className="flex items-center mb-4">
               <img src="/images/img_germanyflag.svg" alt="Germany Flag" className="w-4 h-2 mr-3" />
-              <p className="text-lg font-semibold text-white text-opacity-80 uppercase tracking-wide">
+              <p className="text-sm sm:text-base font-semibold text-white text-opacity-80 uppercase tracking-wide">
                 CONQUEST LARGE - SIEGE OF SHANGHAI - NORMAL - 40 HZ
               </p>
             </div>
-            <p className="text-lg font-semibold text-white text-opacity-80 leading-relaxed max-w-4xl">
+            <p className="text-base text-white text-opacity-80 leading-relaxed max-w-4xl">
               Server protected by The_K-50 AntiCheat. Vip !Rules, Questions, Request, Appeal, Visit us: www.epg.gg | Discord<br />
               https://discord.gg/3r5NK4d
             </p>
           </div>
 
-          <div className="flex space-x-0 mb-12">
-            <Button onClick={handleJoinClick} className="w-80 h-14">JOIN</Button>
-            <Button onClick={handleSpectateClick} className="w-80 h-14">SPECTATE</Button>
-            <Button onClick={handleCommanderClick} className="w-80 h-14">JOIN AS COMMANDER</Button>
-            <Button variant="star" className="w-40 h-14">
+          {/* Action Buttons */}
+          <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 mb-12">
+            <Button onClick={handleJoinClick} className="w-full md:w-80 h-14">JOIN</Button>
+            <Button onClick={handleSpectateClick} className="w-full md:w-80 h-14">SPECTATE</Button>
+            <Button onClick={handleCommanderClick} className="w-full md:w-80 h-14">JOIN AS COMMANDER</Button>
+            <Button variant="star" className="w-full md:w-40 h-14">
               <div className="w-6 h-6 bg-white mr-3" style={{ clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)' }} />
               13672
             </Button>
           </div>
 
-          <div className="grid grid-cols-3 gap-12 mb-12">
+          {/* Server Stats */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-12">
             <div>
-              <p className="text-lg font-semibold text-white uppercase tracking-wide mb-2">PLAYERS</p>
-              <p className="text-3xl font-semibold text-white tracking-wide">64/64</p>
+              <p className="text-sm font-semibold text-white uppercase mb-1">PLAYERS</p>
+              <p className="text-2xl sm:text-3xl font-semibold text-white">64/64</p>
             </div>
             <div>
-              <p className="text-lg font-semibold text-white uppercase tracking-wide mb-2">PING</p>
-              <p className="text-3xl font-semibold text-white tracking-wide">47ms</p>
+              <p className="text-sm font-semibold text-white uppercase mb-1">PING</p>
+              <p className="text-2xl sm:text-3xl font-semibold text-white">47ms</p>
             </div>
             <div>
-              <p className="text-lg font-semibold text-white uppercase tracking-wide mb-2">TICKRATE</p>
-              <p className="text-3xl font-semibold text-white tracking-wide">60 Hz</p>
+              <p className="text-sm font-semibold text-white uppercase mb-1">TICKRATE</p>
+              <p className="text-2xl sm:text-3xl font-semibold text-white">60 Hz</p>
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-12 mb-12">
+          {/* Settings, Advanced, Rules */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             <div>
-              <h3 className="text-lg font-semibold text-white uppercase tracking-wide mb-6">SETTINGS</h3>
-              <div className="space-y-4">
+              <h3 className="text-base font-semibold text-white uppercase mb-4">SETTINGS</h3>
+              <div className="space-y-3">
                 {settingsData.map((setting, index) => (
                   <div key={index}>
-                    <div className="flex justify-between items-center py-2">
-                      <span className="text-base font-medium text-white uppercase">{setting.label}</span>
-                      <span className="text-base font-medium text-white uppercase">{setting.value}</span>
+                    <div className="flex justify-between items-center py-1">
+                      <span className="text-sm text-white uppercase">{setting.label}</span>
+                      <span className="text-sm text-white uppercase">{setting.value}</span>
                     </div>
                     {index < settingsData.length - 1 && <div className="h-px bg-white bg-opacity-10" />}
                   </div>
@@ -131,13 +126,13 @@ const ServerInfoPage = () => {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold text-white uppercase tracking-wide mb-6">ADVANCED</h3>
-              <div className="space-y-4">
+              <h3 className="text-base font-semibold text-white uppercase mb-4">ADVANCED</h3>
+              <div className="space-y-3">
                 {advancedData.map((setting, index) => (
                   <div key={index}>
-                    <div className="flex justify-between items-center py-2">
-                      <span className="text-base font-medium text-white uppercase">{setting.label}</span>
-                      <span className="text-base font-medium text-white uppercase">{setting.value}</span>
+                    <div className="flex justify-between items-center py-1">
+                      <span className="text-sm text-white uppercase">{setting.label}</span>
+                      <span className="text-sm text-white uppercase">{setting.value}</span>
                     </div>
                     {index < advancedData.length - 1 && <div className="h-px bg-white bg-opacity-10" />}
                   </div>
@@ -146,13 +141,13 @@ const ServerInfoPage = () => {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold text-white uppercase tracking-wide mb-6">RULES</h3>
-              <div className="space-y-4">
+              <h3 className="text-base font-semibold text-white uppercase mb-4">RULES</h3>
+              <div className="space-y-3">
                 {rulesData.map((rule, index) => (
                   <div key={index}>
-                    <div className="flex justify-between items-center py-2">
-                      <span className="text-base font-medium text-white uppercase">{rule.label}</span>
-                      <span className={`text-base font-medium uppercase ${rule.highlight ? 'text-yellow-300' : 'text-white'}`}>
+                    <div className="flex justify-between items-center py-1">
+                      <span className="text-sm text-white uppercase">{rule.label}</span>
+                      <span className={`text-sm uppercase ${rule.highlight ? 'text-yellow-300' : 'text-white'}`}>
                         {rule.value}
                       </span>
                     </div>
@@ -163,27 +158,28 @@ const ServerInfoPage = () => {
             </div>
           </div>
 
+          {/* Map Rotation */}
           <div className="mb-8">
-            <h3 className="text-lg font-semibold text-white uppercase tracking-wide mb-6">MAP ROTATION</h3>
-            <div className="grid grid-cols-4 gap-8">
+            <h3 className="text-base font-semibold text-white uppercase tracking-wide mb-4">MAP ROTATION</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {mapRotationData.map((map, index) => (
                 <Card
                   key={index}
-                  className="h-44 w-80 bg-black bg-opacity-50"
+                  className="h-44 w-full bg-black bg-opacity-50"
                   backgroundImage={map.image}
                   overlay={true}
                 >
                   <div className="absolute bottom-6 left-6">
-                    <p className="text-lg font-bold text-white uppercase mb-1">{map.mode}</p>
-                    <p className="text-lg font-bold text-white uppercase">{map.name}</p>
+                    <p className="text-sm font-bold text-white uppercase mb-1">{map.mode}</p>
+                    <p className="text-sm font-bold text-white uppercase">{map.name}</p>
                   </div>
                 </Card>
               ))}
             </div>
           </div>
 
-          {/* Player Avatars */}
-          <div className="fixed right-8 top-16 space-y-4">
+          {/* Player Avatars (optional on mobile) */}
+          <div className="fixed right-2 top-5 space-y-2">
             <div className="relative">
               <img src="/images/img_friend_profile_pic.png" alt="Player 1" className="w-12 h-12 rounded" />
               <div className="absolute -top-1 -right-1 w-3 h-3 bg-white rounded-full border-2 border-white" />
@@ -206,3 +202,6 @@ const ServerInfoPage = () => {
 };
 
 export default ServerInfoPage;
+
+
+

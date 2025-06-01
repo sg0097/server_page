@@ -1,23 +1,43 @@
 
-import React from 'react';
+
+
+
+
+
+
+
+
+
+import React, { useEffect, useState } from 'react';
 import Header from '../../components/common/Header';
 import Sidebar from '../../components/common/Sidebar';
 import Button from '../../components/ui/Button';
 import Card from '../../components/ui/Card';
 
-
 const ServerInfoPage = () => {
-  const handleJoinClick = () => {
-    alert('Joining server...');
-  };
+  const [settingsData, setSettingsData] = useState([]);
+  const [advancedData, setAdvancedData] = useState([]);
+  const [rulesData, setRulesData] = useState([]);
 
-  const handleSpectateClick = () => {
-    alert('Spectating server...');
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://server-page-8.onrender.com/api/server-info');
+        const data = await response.json();
+        setSettingsData(data.settings || []);
+        setAdvancedData(data.advanced || []);
+        setRulesData(data.rules || []);
+      } catch (error) {
+        console.error('Failed to fetch server data', error);
+      }
+    };
 
-  const handleCommanderClick = () => {
-    alert('Joining as commander...');
-  };
+    fetchData();
+  }, []);
+
+  const handleJoinClick = () => alert('Joining server...');
+  const handleSpectateClick = () => alert('Spectating server...');
+  const handleCommanderClick = () => alert('Joining as commander...');
 
   const mapRotationData = [
     {
@@ -42,209 +62,99 @@ const ServerInfoPage = () => {
     }
   ];
 
-  const settingsData = [
-    { label: 'REGION', value: 'EUROPE - DE' },
-    { label: 'PUNKBUSTER', value: 'ON' },
-    { label: 'FAIRFIGHT', value: 'ON' },
-    { label: 'PASSWORD', value: 'OFF' },
-    { label: 'PRESET', value: 'NORMAL' }
-  ];
-
-  const advancedData = [
-    { label: 'MINIMAP', value: 'ON' },
-    { label: 'ONLY SQUAD LEADER SPAWN', value: 'OFF' },
-    { label: 'VEHICLES', value: 'ON' },
-    { label: 'TEAM BALANCE', value: 'ON' },
-    { label: 'MINIMAP SPOTTING', value: 'ON' },
-    { label: 'HUD', value: 'ON' },
-    { label: '3P VEHICLE CAM', value: 'ON' },
-    { label: 'REGENERATIVE HEALTH', value: 'ON' },
-    { label: 'KILL CAM', value: 'ON' },
-    { label: 'FRIENDLY FIRE', value: 'OFF' },
-    { label: '3D SPOTTING', value: 'ON' },
-    { label: 'ENEMY NAME TAGS', value: 'ON' }
-  ];
-
-  const rulesData = [
-    { label: 'TICKETS', value: '400', highlight: true },
-    { label: 'VEHICLE SPAWN DELAY', value: '25', highlight: true },
-    { label: 'BULLET DAMAGE', value: '100' },
-    { label: 'KICK AFTER TEAM KILLS', value: '5' },
-    { label: 'PLAYER HEALTH', value: '100' },
-    { label: 'PLAYER RESPAWN TIME', value: '100' },
-    { label: 'KICK AFTER IDLE', value: '300' },
-    { label: 'BAN AFTER KICKS', value: '3' }
-  ];
-  
-
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center"
-        style={{ backgroundImage: 'url(/images/background.png)' }}
-      />
-      
-      {/* Dark Overlay */}
+      <div className="absolute inset-0 w-full h-full bg-cover bg-center" style={{ backgroundImage: 'url(/images/background.png)' }} />
       <div className="absolute inset-0 bg-black bg-opacity-60" />
-      
-      {/* Sidebar */}
-      <Sidebar />
-      
-      {/* Main Content */}
-      <div className="relative z-10 ml-16">
+
+      <div className="lg:block hidden">
+        <Sidebar />
+      </div>
+
+      <div className="relative z-10 lg:ml-16">
         <Header />
-        
-        <main className="px-8 pb-8">
-          <h2 className="text-4xl font-semibold text-white mb-6 tracking-wide">
-              #1| NASA | Noobs Welcome | Conquest 40Hz
-            </h2>
-          {/* Server Title and Info */}
+        <main className="px-4 sm:px-8 pb-8">
+          <h2 className="text-xl sm:text-2xl md:text-4xl font-semibold text-white mb-6 tracking-wide text-center sm:text-left">
+            #1| NASA | Noobs Welcome | Conquest 40Hz
+          </h2>
+
           <div className="mb-8">
-            <div className="flex items-center mb-4">
-              <img src="/images/img_germanyflag.svg" alt="Germany Flag" className="w-4 h-2 mr-3" />
-              <p className="text-lg font-semibold text-white text-opacity-80 uppercase tracking-wide">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-3 mb-4">
+              <img src="/images/img_germanyflag.svg" alt="Germany Flag" className="w-4 h-2 mb-2 sm:mb-0" />
+              <p className="text-sm sm:text-base font-semibold text-white text-opacity-80 uppercase tracking-wide text-center sm:text-left">
                 CONQUEST LARGE - SIEGE OF SHANGHAI - NORMAL - 40 HZ
               </p>
             </div>
-            
-          
-            
-            <p className="text-lg font-semibold text-white text-opacity-80 leading-relaxed max-w-4xl">
+            <p className="text-sm sm:text-base text-white text-opacity-80 leading-relaxed max-w-4xl mx-auto sm:mx-0">
               Server protected by The_K-50 AntiCheat. Vip !Rules, Questions, Request, Appeal, Visit us: www.epg.gg | Discord<br />
               https://discord.gg/3r5NK4d
             </p>
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex space-x-0 mb-12">
-            <Button 
-              onClick={handleJoinClick}
-              className="w-80 h-14"
-            >
-              JOIN
-            </Button>
-            <Button 
-              onClick={handleSpectateClick}
-              className="w-80 h-14"
-            >
-              SPECTATE
-            </Button>
-            <Button 
-              onClick={handleCommanderClick}
-              className="w-80 h-14"
-            >
-              JOIN AS COMMANDER
-            </Button>
-            <Button 
-              variant="star"
-              className="w-40 h-14"
-            >
+          <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 mb-12">
+            <Button onClick={handleJoinClick} className="w-full md:w-80 h-14">JOIN</Button>
+            <Button onClick={handleSpectateClick} className="w-full md:w-80 h-14">SPECTATE</Button>
+            <Button onClick={handleCommanderClick} className="w-full md:w-80 h-14">JOIN AS COMMANDER</Button>
+            <Button variant="star" className="w-full md:w-40 h-14">
               <div className="w-6 h-6 bg-white mr-3" style={{ clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)' }} />
               13672
             </Button>
           </div>
 
-          {/* Stats Section */}
-          <div className="grid grid-cols-3 gap-12 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-12">
             <div>
-              <p className="text-lg font-semibold text-white uppercase tracking-wide mb-2">PLAYERS</p>
-              <p className="text-3xl font-semibold text-white tracking-wide">64/64</p>
+              <p className="text-sm font-semibold text-white uppercase mb-1">PLAYERS</p>
+              <p className="text-2xl sm:text-3xl font-semibold text-white">64/64</p>
             </div>
             <div>
-              <p className="text-lg font-semibold text-white uppercase tracking-wide mb-2">PING</p>
-              <p className="text-3xl font-semibold text-white tracking-wide">47ms</p>
+              <p className="text-sm font-semibold text-white uppercase mb-1">PING</p>
+              <p className="text-2xl sm:text-3xl font-semibold text-white">47ms</p>
             </div>
             <div>
-              <p className="text-lg font-semibold text-white uppercase tracking-wide mb-2">TICKRATE</p>
-              <p className="text-3xl font-semibold text-white tracking-wide">60 Hz</p>
-            </div>
-          </div>
-
-          {/* Settings Grid */}
-          <div className="grid grid-cols-3 gap-12 mb-12">
-            {/* Settings Column */}
-            <div>
-              <h3 className="text-lg font-semibold text-white uppercase tracking-wide mb-6">SETTINGS</h3>
-              <div className="space-y-4">
-                {settingsData.map((setting, index) => (
-                  <div key={index}>
-                    <div className="flex justify-between items-center py-2">
-                      <span className="text-base font-medium text-white uppercase">{setting.label}</span>
-                      <span className="text-base font-medium text-white uppercase">{setting.value}</span>
-                    </div>
-                    {index < settingsData.length - 1 && (
-                      <div className="h-px bg-white bg-opacity-10" />
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Advanced Column */}
-            <div>
-              <h3 className="text-lg font-semibold text-white uppercase tracking-wide mb-6 font-rajdhani opacity-100 height:23 width:87">ADVANCED</h3>
-              <div className="space-y-4">
-                {advancedData.map((setting, index) => (
-                  <div key={index}>
-                    <div className="flex justify-between items-center py-2">
-                      <span className="text-base font-medium text-white uppercase">{setting.label}</span>
-                      <span className="text-base font-medium text-white uppercase">{setting.value}</span>
-                    </div>
-                    {index < advancedData.length - 1 && (
-                      <div className="h-px bg-white bg-opacity-10" />
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Rules Column */}
-            <div>
-              <h3 className="text-lg font-semibold text-white uppercase tracking-wide mb-6">RULES</h3>
-              <div className="space-y-4">
-                {rulesData.map((rule, index) => (
-                  <div key={index}>
-                    <div className="flex justify-between items-center py-2">
-                      <span className="text-base font-medium text-white uppercase">{rule.label}</span>
-                      <span className={`text-base font-medium uppercase ${rule.highlight ? 'text-yellow-300' : 'text-white'}`}>
-                        {rule.value}
-                      </span>
-                    </div>
-                    {index < rulesData.length - 1 && (
-                      <div className="h-px bg-white bg-opacity-10" />
-                    )}
-                  </div>
-                ))}
-              </div>
+              <p className="text-sm font-semibold text-white uppercase mb-1">TICKRATE</p>
+              <p className="text-2xl sm:text-3xl font-semibold text-white">60 Hz</p>
             </div>
           </div>
 
-          {/* Map Rotation Section */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {[{ title: 'SETTINGS', data: settingsData }, { title: 'ADVANCED', data: advancedData }, { title: 'RULES', data: rulesData }].map((section, idx) => (
+              <div key={idx}>
+                <h3 className="text-base font-semibold text-white uppercase mb-4">{section.title}</h3>
+                <div className="space-y-3">
+                  {section.data.map((item, index) => (
+                    <div key={index}>
+                      <div className="flex justify-between items-center py-1">
+                        <span className="text-sm text-white uppercase">{item.label}</span>
+                        <span className={`text-sm uppercase ${item.highlight ? 'text-yellow-300' : 'text-white'}`}>{item.value}</span>
+                      </div>
+                      {index < section.data.length - 1 && <div className="h-px bg-white bg-opacity-10" />}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
           <div className="mb-8">
-            <h3 className="text-lg font-semibold text-white uppercase tracking-wide mb-6">MAP ROTATION</h3>
-            
-          
-            
-            <div className="grid grid-cols-4 gap-8">
+            <h3 className="text-base font-semibold text-white uppercase tracking-wide mb-4">MAP ROTATION</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {mapRotationData.map((map, index) => (
                 <Card
                   key={index}
-                  className="h-44 w-80 bg-black bg-opacity-50"
+                  className="h-44 w-full bg-black bg-opacity-50"
                   backgroundImage={map.image}
                   overlay={true}
                 >
                   <div className="absolute bottom-6 left-6">
-                    <p className="text-lg font-bold text-white uppercase mb-1">{map.mode}</p>
-                    <p className="text-lg font-bold text-white uppercase">{map.name}</p>
+                    <p className="text-sm font-bold text-white uppercase mb-1">{map.mode}</p>
+                    <p className="text-sm font-bold text-white uppercase">{map.name}</p>
                   </div>
                 </Card>
               ))}
             </div>
           </div>
 
-          {/* Player Avatars */}
-          <div className="fixed right-8 top-16 space-y-4">
+          <div className="hidden md:block fixed right-4 top-20 space-y-4">
             <div className="relative">
               <img src="/images/img_friend_profile_pic.png" alt="Player 1" className="w-12 h-12 rounded" />
               <div className="absolute -top-1 -right-1 w-3 h-3 bg-white rounded-full border-2 border-white" />
