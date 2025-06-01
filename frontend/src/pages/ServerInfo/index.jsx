@@ -12,7 +12,7 @@ const ServerInfoPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/server-info');
+        const response = await fetch('https://server-page-2.onrender.com/api/server-info');
         const data = await response.json();
         setSettingsData(data.settings || []);
         setAdvancedData(data.advanced || []);
