@@ -20,10 +20,11 @@ export default defineConfig({
       '@styles': path.resolve('./src/styles'),
     },
   },
-  server: {
+    server: {
     port: "4028",
     host: "0.0.0.0",
     strictPort: true,
-    allowedHosts: ['.amazonaws.com', '.builtwithrocket.new']
+    allowedHosts: ['.amazonaws.com', '.builtwithrocket.new', 'server-page-4.onrender.com']
   }
+
 });
